@@ -1,7 +1,20 @@
 import mysql.connector as m
 
-con_obj=m.connect(user='root',host='localhost',password='Prem@9482',database='demo')
+con_obj = m.connect(user='root', host='localhost', password='Prem@9482', database='demo', auth_plugin='mysql_native_password')
 cur_obj=con_obj.cursor()
+
+
+def emp_tab():
+    qry='create table emp(Name varchar(25), City varchar(25), D_O_B varchar(20), Phone varchar(15))'
+    try:
+        cur_obj.execute(qry)
+    except:
+        print('table already exist')
+    else:
+        print('Table created successfully')
+        qry='select * from emp'
+        cur_obj.execute(qry)
+emp_tab()
 
 def empinfo():
     try:
